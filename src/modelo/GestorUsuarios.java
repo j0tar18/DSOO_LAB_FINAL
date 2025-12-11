@@ -118,6 +118,56 @@ public class GestorUsuarios {
         System.out.println("Usuario eliminado: " + nombreUsuario);
         return true;
     }
+    
+    // --- NUEVO MÉTODO PARA BORRAR USUARIO POR CÓDIGO DE CLIENTE ---
+    public boolean eliminarUsuarioPorCodigoCliente(String codigoCliente) {
+        Usuario usuarioABorrar = null;
+        
+        for (Usuario u : listaUsuarios) {
+            // Verificamos si el usuario es de tipo Cliente
+            if (u instanceof UsuarioCliente) {
+                UsuarioCliente uc = (UsuarioCliente) u;
+                // Comparamos el código del cliente asociado
+                if (uc.getCliente().getCodigoCliente().equals(codigoCliente)) {
+                    usuarioABorrar = u;
+                    break;
+                }
+            }
+        }
+        
+        if (usuarioABorrar != null) {
+            listaUsuarios.remove(usuarioABorrar);
+            System.out.println("Usuario web asociado al cliente " + codigoCliente + " eliminado.");
+            return true;
+        }
+        
+        return false; // No tenía usuario web
+    }
+    
+    // --- NUEVO MÉTODO PARA BORRAR USUARIO POR CÓDIGO DE CLIENTE ---
+    public boolean eliminarUsuarioPorCodigoEmpleado(String codigoEmpleado) {
+        Usuario usuarioABorrar = null;
+        
+        for (Usuario u : listaUsuarios) {
+            // Verificamos si el usuario es de tipo Cliente
+            if (u instanceof UsuarioEmpleado) {
+                UsuarioEmpleado ue = (UsuarioEmpleado) u;
+                // Comparamos el código del cliente asociado
+                if (ue.getEmpleado().getCodigoEmpleado().equals(codigoEmpleado)) {
+                    usuarioABorrar = u;
+                    break;
+                }
+            }
+        }
+        
+        if (usuarioABorrar != null) {
+            listaUsuarios.remove(usuarioABorrar);
+            System.out.println("Usuario web asociado al empleado " + codigoEmpleado + " eliminado.");
+            return true;
+        }
+        
+        return false; // No tenía usuario web
+    }
 
     public void mostrarUsuarios() {
         if (listaUsuarios.isEmpty()) {

@@ -63,13 +63,16 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         btnRetiro = new javax.swing.JButton();
         btnDeposito = new javax.swing.JButton();
-        btnRegCuenta = new javax.swing.JButton();
         btnRegCliente = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         lblTxtTransacciones = new javax.swing.JLabel();
         lblTxtRegistro = new javax.swing.JLabel();
         lblTxtRegistro1 = new javax.swing.JLabel();
+        btnRegCuenta = new javax.swing.JButton();
+        btnRegEmpleado = new javax.swing.JButton();
+        lblTxtRegistro2 = new javax.swing.JLabel();
+        lblTxtRegistro3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(800, 800));
@@ -177,25 +180,17 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         btnDeposito.addActionListener(this::btnDepositoActionPerformed);
         jPanel2.add(btnDeposito, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 140, -1));
 
-        btnRegCuenta.setBackground(new java.awt.Color(204, 204, 204));
-        btnRegCuenta.setFont(new java.awt.Font("OCR A Extended", 0, 12)); // NOI18N
-        btnRegCuenta.setForeground(new java.awt.Color(0, 0, 0));
-        btnRegCuenta.setText("Registrar Cuenta");
-        btnRegCuenta.setBorderPainted(false);
-        btnRegCuenta.addActionListener(this::btnRegCuentaActionPerformed);
-        jPanel2.add(btnRegCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 160, -1));
-
         btnRegCliente.setBackground(new java.awt.Color(204, 204, 204));
         btnRegCliente.setFont(new java.awt.Font("OCR A Extended", 0, 12)); // NOI18N
         btnRegCliente.setForeground(new java.awt.Color(0, 0, 0));
         btnRegCliente.setText("Registrar Cliente");
         btnRegCliente.setBorderPainted(false);
         btnRegCliente.addActionListener(this::btnRegClienteActionPerformed);
-        jPanel2.add(btnRegCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, 160, -1));
+        jPanel2.add(btnRegCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, 160, -1));
 
         jSeparator1.setBackground(new java.awt.Color(239, 184, 16));
         jSeparator1.setForeground(new java.awt.Color(239, 184, 16));
-        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 119, 380, 10));
+        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 380, 30));
 
         jSeparator2.setBackground(new java.awt.Color(239, 184, 16));
         jSeparator2.setForeground(new java.awt.Color(239, 184, 16));
@@ -204,17 +199,42 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         lblTxtTransacciones.setFont(new java.awt.Font("OCR A Extended", 1, 20)); // NOI18N
         lblTxtTransacciones.setForeground(new java.awt.Color(255, 255, 255));
         lblTxtTransacciones.setText("TRANSACCIONES");
-        jPanel2.add(lblTxtTransacciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
+        jPanel2.add(lblTxtTransacciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
 
         lblTxtRegistro.setFont(new java.awt.Font("OCR A Extended", 1, 20)); // NOI18N
         lblTxtRegistro.setForeground(new java.awt.Color(255, 255, 255));
         lblTxtRegistro.setText("LISTAS");
-        jPanel2.add(lblTxtRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 336, 101, -1));
+        jPanel2.add(lblTxtRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, 80, -1));
 
         lblTxtRegistro1.setFont(new java.awt.Font("OCR A Extended", 1, 20)); // NOI18N
         lblTxtRegistro1.setForeground(new java.awt.Color(255, 255, 255));
-        lblTxtRegistro1.setText("REGISTRO");
-        jPanel2.add(lblTxtRegistro1, new org.netbeans.lib.awtextra.AbsoluteConstraints(53, 51, -1, -1));
+        lblTxtRegistro1.setText("Y");
+        jPanel2.add(lblTxtRegistro1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, -1, -1));
+
+        btnRegCuenta.setBackground(new java.awt.Color(204, 204, 204));
+        btnRegCuenta.setFont(new java.awt.Font("OCR A Extended", 0, 12)); // NOI18N
+        btnRegCuenta.setForeground(new java.awt.Color(0, 0, 0));
+        btnRegCuenta.setText("Registrar Cuenta");
+        btnRegCuenta.setBorderPainted(false);
+        btnRegCuenta.addActionListener(this::btnRegCuentaActionPerformed);
+        jPanel2.add(btnRegCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 160, -1));
+
+        btnRegEmpleado.setBackground(new java.awt.Color(204, 204, 204));
+        btnRegEmpleado.setFont(new java.awt.Font("OCR A Extended", 0, 12)); // NOI18N
+        btnRegEmpleado.setForeground(new java.awt.Color(0, 0, 0));
+        btnRegEmpleado.setText("Registrar Empleado");
+        btnRegEmpleado.addActionListener(this::btnRegEmpleadoActionPerformed);
+        jPanel2.add(btnRegEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, -1, -1));
+
+        lblTxtRegistro2.setFont(new java.awt.Font("OCR A Extended", 1, 20)); // NOI18N
+        lblTxtRegistro2.setForeground(new java.awt.Color(255, 255, 255));
+        lblTxtRegistro2.setText("ELIMINAR");
+        jPanel2.add(lblTxtRegistro2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, -1, 20));
+
+        lblTxtRegistro3.setFont(new java.awt.Font("OCR A Extended", 1, 20)); // NOI18N
+        lblTxtRegistro3.setForeground(new java.awt.Color(255, 255, 255));
+        lblTxtRegistro3.setText("REGISTRAR");
+        jPanel2.add(lblTxtRegistro3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -272,14 +292,8 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         clientes.setVisible(true);
     }//GEN-LAST:event_btnListaClientesActionPerformed
 
-    private void btnRegCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegCuentaActionPerformed
-        RegistrarCuentaForm ventana = new RegistrarCuentaForm(banco);
-        ventana.setVisible(true);
-    }//GEN-LAST:event_btnRegCuentaActionPerformed
-
     private void btnMovimientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMovimientosActionPerformed
         MovimientosFrame ventana = new MovimientosFrame(banco);
-    
         // Hacerla visible
         ventana.setVisible(true);
     }//GEN-LAST:event_btnMovimientosActionPerformed
@@ -296,6 +310,16 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
         ventana.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnRegCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegCuentaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRegCuentaActionPerformed
+
+    private void btnRegEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegEmpleadoActionPerformed
+        // TODO add your handling code here:
+        RegistrarEmpleadoForm ventana = new RegistrarEmpleadoForm(banco, gestor);
+        ventana.setVisible(true);
+    }//GEN-LAST:event_btnRegEmpleadoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -308,6 +332,7 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnMovimientos2;
     private javax.swing.JButton btnRegCliente;
     private javax.swing.JButton btnRegCuenta;
+    private javax.swing.JButton btnRegEmpleado;
     private javax.swing.JButton btnRetiro;
     private javax.swing.JButton btnSaldo;
     private javax.swing.JButton btnSalir;
@@ -321,6 +346,8 @@ public class MenuAdministradorFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lblNombreBanco2;
     private javax.swing.JLabel lblTxtRegistro;
     private javax.swing.JLabel lblTxtRegistro1;
+    private javax.swing.JLabel lblTxtRegistro2;
+    private javax.swing.JLabel lblTxtRegistro3;
     private javax.swing.JLabel lblTxtTransacciones;
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JLabel logo;

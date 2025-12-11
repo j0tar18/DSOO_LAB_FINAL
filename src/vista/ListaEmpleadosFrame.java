@@ -39,9 +39,10 @@ public class ListaEmpleadosFrame extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        btnMostrar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -63,14 +64,6 @@ public class ListaEmpleadosFrame extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 40, 336, 225));
 
-        jButton1.setBackground(new java.awt.Color(239, 184, 16));
-        jButton1.setFont(new java.awt.Font("OCR A Extended", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setText("Mostrar");
-        jButton1.setBorderPainted(false);
-        jButton1.addActionListener(this::jButton1ActionPerformed);
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(159, 271, -1, -1));
-
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -79,12 +72,28 @@ public class ListaEmpleadosFrame extends javax.swing.JFrame {
         jLabel1.setText("Lista de empleados");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 15, -1, 20));
 
+        btnMostrar.setBackground(new java.awt.Color(239, 184, 16));
+        btnMostrar.setFont(new java.awt.Font("OCR A Extended", 0, 14)); // NOI18N
+        btnMostrar.setForeground(new java.awt.Color(0, 0, 0));
+        btnMostrar.setText("Mostrar");
+        btnMostrar.setBorderPainted(false);
+        btnMostrar.addActionListener(this::btnMostrarActionPerformed);
+        jPanel1.add(btnMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, -1, -1));
+
+        btnEliminar.setBackground(new java.awt.Color(239, 184, 16));
+        btnEliminar.setFont(new java.awt.Font("OCR A Extended", 0, 14)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(0, 0, 0));
+        btnEliminar.setText("Eliminar");
+        btnEliminar.setBorderPainted(false);
+        btnEliminar.addActionListener(this::btnEliminarActionPerformed);
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 270, -1, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 310));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         // Limpiar la tabla antes de llenarla
         modelo.setRowCount(0);
@@ -97,7 +106,42 @@ public class ListaEmpleadosFrame extends javax.swing.JFrame {
             // Agregar fila a la tabla
             modelo.addRow(new Object[]{apellido, codigoEmpleado});
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnMostrarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        int filaSeleccionada = jTable1.getSelectedRow();
+        if (filaSeleccionada == -1) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Seleccione un empleado para eliminar.");
+            return;
+        }
+
+        String codigoEmpleado = jTable1.getValueAt(filaSeleccionada, 1).toString();
+        
+        // 2. Confirmación
+        int confirmacion = javax.swing.JOptionPane.showConfirmDialog(this, 
+            "¿Seguro que desea eliminar al empleado " + codigoEmpleado + "?\n" +
+            "Se borrará su USUARIO web permanentemente.",
+            "Eliminación Total",
+            javax.swing.JOptionPane.YES_NO_OPTION);
+            
+        if (confirmacion == javax.swing.JOptionPane.YES_OPTION) {
+            
+            // --- PASO A: Eliminar Usuario Web (GestorUsuarios) ---
+            gestor.eliminarUsuarioPorCodigoEmpleado(codigoEmpleado);
+            
+            boolean eliminado = banco.eliminarEmpleado(codigoEmpleado);
+            
+            if (eliminado) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Empleado y su usuario eliminados.");
+                
+                // Actualizar la tabla visualmente
+                btnMostrarActionPerformed(evt); 
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, "Error al eliminar empleado.");
+            }
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -105,7 +149,8 @@ public class ListaEmpleadosFrame extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnMostrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

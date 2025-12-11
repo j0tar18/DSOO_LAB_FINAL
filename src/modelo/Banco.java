@@ -34,6 +34,48 @@ public class Banco {
         System.out.println("Cliente registrado correctamente: " + cliente.getApellido() + " " 
         + cliente.getNombre());
     }
+    
+    /* === MÉTODO PARA ELIMINAR CLIENTE Y SUS CUENTAS === */
+    public boolean eliminarCliente(String codigoCliente) {
+        // 1. Buscar al cliente
+        Cliente clienteAEliminar = buscarCliente(codigoCliente);
+        
+        if (clienteAEliminar == null) {
+            return false; // El cliente no existe
+        }
+
+        // 2. Identificar y eliminar las relaciones en la lista de Titulares
+        // Usamos un iterador para poder borrar elementos mientras recorremos la lista
+        ArrayList<Cuenta> cuentasABorrar = new ArrayList<>();
+        Iterator<Titular> it = listaTitular.iterator();
+        
+        while (it.hasNext()) {
+            Titular t = it.next();
+            // Si el titular coincide con el cliente que queremos borrar
+            if (t.getCliente().getCodigoCliente().equals(codigoCliente)) {
+                // Guardamos la cuenta para borrarla después de la lista general de cuentas
+                cuentasABorrar.add(t.getCuenta());
+                
+                // Eliminamos la relación de titularidad
+                it.remove();
+            }
+        }
+
+        // 3. Eliminar las cuentas de la lista principal (listaCuentas)
+        // Esto asegura que las cuentas desaparezcan del banco
+        for (Cuenta c : cuentasABorrar) {
+            listaCuentas.remove(c);
+        }
+
+        // 4. Finalmente, eliminar al cliente de la lista de clientes
+        boolean eliminado = listaClientes.remove(clienteAEliminar);
+        
+        if (eliminado) {
+            System.out.println("Cliente " + codigoCliente + " y sus cuentas asociadas fueron eliminados.");
+        }
+        
+        return eliminado;
+    }
 
     public void registrarCuenta(Cuenta cuenta) {
         if (!Validaciones.validarObjeto(cuenta)) {
@@ -63,6 +105,23 @@ public class Banco {
         listaEmpleados.add(empleado);
         System.out.println("Empleado registrado correctamente: " + empleado.getApellido() + " " 
         + empleado.getNombre());
+    }
+    
+    /* === MÉTODO PARA ELIMINAR EMPLEADO === */
+    public boolean eliminarEmpleado(String codigoEmpleado) {
+        // 1. Buscar al cliente
+        Empleado empleadoAEliminar = buscarEmpleado(codigoEmpleado);
+        
+        if (empleadoAEliminar == null) {
+            return false; // El empleado no existe
+        }
+        boolean eliminado = listaEmpleados.remove(empleadoAEliminar);
+        
+        if (eliminado) {
+            System.out.println("Empleado " + codigoEmpleado + " fue eliminado.");
+        }
+        
+        return eliminado;
     }
 
     public void registrarTitular(Cliente cliente, Cuenta cuenta) {

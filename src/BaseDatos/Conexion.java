@@ -2,7 +2,7 @@ package BaseDatos;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-//DB
+//DB A CONECTAR
 public class Conexion {
     private static final String URL = "jdbc:mysql://localhost:3306/banco?serverTimezone=UTC";
     private static final String USER = "root";
